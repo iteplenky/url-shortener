@@ -33,7 +33,7 @@ func (ep *Endpoint) ShortenURL(w http.ResponseWriter, r *http.Request) {
 	body, _ := io.ReadAll(r.Body)
 	ep.s.Set(id, string(body))
 
-	shortenURL := CorrectUrl(r) + id
+	shortenURL := CorrectURL(r) + id
 
 	w.WriteHeader(http.StatusCreated)
 	_, _ = w.Write([]byte(shortenURL))
@@ -60,7 +60,7 @@ func (ep *Endpoint) Redirect(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, val, http.StatusTemporaryRedirect)
 }
 
-func CorrectUrl(r *http.Request) string {
+func CorrectURL(r *http.Request) string {
 	scheme := "http"
 	if r.TLS != nil {
 		scheme = "https"
