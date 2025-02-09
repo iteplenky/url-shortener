@@ -33,10 +33,10 @@ func (ep *Endpoint) ShortenURL(w http.ResponseWriter, r *http.Request) {
 	body, _ := io.ReadAll(r.Body)
 	ep.s.Set(id, string(body))
 
-	shortenUrl := CorrectUrl(r) + id
+	shortenURL := CorrectUrl(r) + id
 
 	w.WriteHeader(http.StatusCreated)
-	_, _ = w.Write([]byte(shortenUrl))
+	_, _ = w.Write([]byte(shortenURL))
 }
 
 func (ep *Endpoint) Redirect(w http.ResponseWriter, r *http.Request) {
